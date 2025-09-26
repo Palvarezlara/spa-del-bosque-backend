@@ -8,15 +8,21 @@ spring:
     password: postgres
   jpa:
     hibernate:
-      ddl-auto: update   # en prod usar flyway y 'validate'
+      ddl-auto: update   # en prod: flyway + validate
     properties:
-      hibernate.format_sql: true
-      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate:
+        format-sql: true
   jackson:
     serialization:
-      WRITE_DATES_AS_TIMESTAMPS: false
+      write-dates-as-timestamps: false
 
-# CORS simple (puedes mover esto a una clase @Configuration)
-app:
-  cors:
-    allowed-origins: http://localhost:5173
+logging:
+  level:
+    "[org.hibernate.SQL]": debug
+    "[org.hibernate.orm.jdbc.bind]": trace
+
+# Si además quieres declarar orígenes CORS aquí (opcional, ya tienes CorsConfig en Java):
+# app:
+#   cors:
+#     allowed-origins:
+#       - http://localhost:5173
