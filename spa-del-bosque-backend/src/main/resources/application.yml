@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spa_bosque
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update   # en prod usar flyway y 'validate'
+    properties:
+      hibernate.format_sql: true
+      hibernate.jdbc.lob.non_contextual_creation: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+# CORS simple (puedes mover esto a una clase @Configuration)
+app:
+  cors:
+    allowed-origins: http://localhost:5173
